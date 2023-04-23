@@ -1,13 +1,12 @@
-version: "0.3"
+version: "0.4"
 services:
   tic-tac-toe:
-    image: "zcohn93/tic-tac-toe:0.3"
+    image: "zcohn93/tic-tac-toe:0.4"
     container_name: tic-tac-toe
     ports:
-      - ${HOST_PORT}:${GUEST_PORT}
+      - 4001:4001
     environment:
-      - PORT=${GUEST_PORT}
-      - DB_URI="${DB_URI}"
+      - PORT=4001
       - NETRC="/run/secrets/github_token"
     secrets:
       - github_token
