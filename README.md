@@ -1,6 +1,6 @@
 # tic-tac-toe
 
-This is a tutorial project for Jacob and Zach to create a full stack web app. 
+This is a practice project for Jacob and Zach to create a full stack web app. 
 
 The goal is a deployed site where users can play tic-tac-toe in real time against each other. 
 
