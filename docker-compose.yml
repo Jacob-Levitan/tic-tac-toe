@@ -1,7 +1,7 @@
-version: "${TIC_TAC_TOE_VERSION}"
+version: "0.3"
 services:
   tic-tac-toe:
-    image: "zcohn93/tic-tac-toe:${TIC_TAC_TOE_VERSION}"
+    image: "zcohn93/tic-tac-toe:0.3"
     container_name: tic-tac-toe
     ports:
       - ${HOST_PORT}:${GUEST_PORT}
