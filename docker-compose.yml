@@ -1,0 +1,25 @@
+version: "${TIC_TAC_TOE_VERSION}"
+services:
+  tic-tac-toe:
+    image: "zcohn93/tic-tac-toe:${TIC_TAC_TOE_VERSION}"
+    container_name: tic-tac-toe
+    ports:
+      - ${HOST_PORT}:${GUEST_PORT}
+    environment:
+      - PORT=${GUEST_PORT}
+      - DB_URI="${DB_URI}"
+      - NETRC="/run/secrets/github_token"
+    secrets:
+      - github_token
+      - db_user
+      - db_pw
+    tty: true
+    stdin_open: true
+
+secrets:
+  github_token:
+    file: secrets/.netrc
+  db_user:
+    file: secrets/db_user
+  db_pw:
+    file: secrets/db_pw
