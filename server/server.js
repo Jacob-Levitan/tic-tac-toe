@@ -1,12 +1,17 @@
 const express = require('express');
+const loginRouter = require('../routes/login');
+const registerRouter = require('../routes/register');
+
 const app = express();
+app.set('view-engine', 'ejs');
+app.use(express.json());
+app.use('/login', loginRouter);
+app.use('/register', registerRouter);
 
 console.log('TEST LOG');
 
-app.use(express.json());
-
 app.get('/', (req, res) => {
-    res.send('Hello World');
+    res.render('server.ejs', { name: "Zach" });
 });
 
 const port = process.env.PORT || 5000;
