@@ -1,15 +1,16 @@
 const express = require('express');
 const { append } = require('express/lib/response');
 const bcrypt = require('bcrypt');
-const users = require('../db/users.js');
+const { users } = require('../db/users');
+const { checkNotAuthenticated } = require('../server/passport-cfg');
 const router = express.Router();
 const NUM_HASHES = 10;
 
-router.get('/', (req, res) => {
+router.get('/', checkNotAuthenticated, (req, res) => {
     res.render('register.ejs');
 });
 
-router.post('/', async (req, res) => {
+router.post('/', checkNotAuthenticated, async (req, res) => {
     try {
         // TODO: Consider changing from NUM_HASHES to salt
         const hashedPassword = await bcrypt.hash(req.body.password, NUM_HASHES);

@@ -1,6 +1,6 @@
 services:
   tic-tac-toe:
-    image: "zcohn93/tic-tac-toe:0.4"
+    image: "zcohn93/tic-tac-toe:0.5"
     container_name: tic-tac-toe
     ports:
       - 4001:4001
@@ -9,6 +9,7 @@ services:
     secrets:
       - db_user
       - db_pw
+      - session_secret
     tty: true
     stdin_open: true
     volumes:
@@ -21,3 +22,5 @@ secrets:
     file: secrets/db_user
   db_pw:
     file: secrets/db_pw
+  session_secret:
+    file: secrets/session_secret
