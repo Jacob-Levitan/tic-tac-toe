@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const loginRouter = require('../routes/login');
+const logoutRouter = require('../routes/logout');
 const registerRouter = require('../routes/register');
 const passport = require('passport')
 const flash = require('express-flash');
@@ -27,6 +28,7 @@ app.use(passport.session());
 
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
+app.use('/logout', logoutRouter);
 
 app.get('/', checkAuthenticated, (req, res) => {
     res.render('server.ejs', { name: req.user.name });
