@@ -13,7 +13,7 @@ router.get('/', checkNotAuthenticated, (req, res) => {
 
 router.post('/', checkNotAuthenticated, async (req, res) => {
     try {
-        await mongo_connect();
+        // await mongo_connect();
 
         const existingUsername = await User.getUserByUsername(req.body.username);
         if (existingUsername) {
