@@ -1,4 +1,3 @@
-version: "0.4"
 services:
   tic-tac-toe:
     image: "zcohn93/tic-tac-toe:0.4"
@@ -7,13 +6,13 @@ services:
       - 4001:4001
     environment:
       - PORT=4001
-      - NETRC="/run/secrets/github_token"
     secrets:
-      - github_token
       - db_user
       - db_pw
     tty: true
     stdin_open: true
+    volumes:
+      - ./secrets/.netrc:/root/.netrc:ro
 
 secrets:
   github_token:
