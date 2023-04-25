@@ -6,6 +6,7 @@ services:
       - 4001:4001
     environment:
       - PORT=4001
+      - DB_URI=tic-tac-toe.blziyjp.mongodb.net/tic-tac-toe
     secrets:
       - db_user
       - db_pw
