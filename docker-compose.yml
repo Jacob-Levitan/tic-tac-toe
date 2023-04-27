@@ -1,6 +1,6 @@
 services:
   tic-tac-toe:
-    image: "zcohn93/tic-tac-toe:0.6"
+    image: "zcohn93/tic-tac-toe:0.7"
     container_name: tic-tac-toe
     ports:
       - 4001:4001
