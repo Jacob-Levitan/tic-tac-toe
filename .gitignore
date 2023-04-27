@@ -103,5 +103,5 @@ dist
 # TernJS port file
 .tern-port
 
-setenv.sh
 secrets
+tic-tac-toe.code-workspace
