@@ -10,6 +10,8 @@ services:
     secrets:
       - db_user
       - db_pw
+      - jwt_secret
+      - jwt_refresh_secret
       - session_secret
     tty: true
     stdin_open: true
@@ -23,5 +25,9 @@ secrets:
     file: secrets/db_user
   db_pw:
     file: secrets/db_pw
+  jwt_secret:
+    file: secrets/jwt_secret
+  jwt_refresh_secret:
+    file: secrets/jwt_refresh_secret
   session_secret:
     file: secrets/session_secret
