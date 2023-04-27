@@ -1,5 +1,4 @@
 const express = require('express');
-const app = express();
 const loginRouter = require('../routes/login');
 const logoutRouter = require('../routes/logout');
 const registerRouter = require('../routes/register');
@@ -12,8 +11,10 @@ const session_secret = read_secret('session_secret');
 
 init_passport(passport);
 
+const app = express();
 app.set('view-engine', 'html');
 app.use(express.static('public'));
+
 app.use(express.urlencoded({ extended: false }));
 app.use(flash());
 app.use(session({
