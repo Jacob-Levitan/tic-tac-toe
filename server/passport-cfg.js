@@ -6,17 +6,15 @@ const LocalStrategy = require('passport-local').Strategy
 
 function init_passport(passport) {
     const authenticate_user = async(email, password, done) => {
-        const user = await User.getUserByEmail(email);
-        if (!user) {
-            return done( null, null, { message: 'No user with that email' } );
-        }
-
         try {
-            if (await bcrypt.compare(password, user.hashedPw)) {
-                return done(null, user);
+            const user = await User.getUserByEmail(email);
+            /* If email doesn't exist or password doesn't match */
+            if (!user || !(await bcrypt.compare(password, user.hashedPw))) {
+                return done( null, null, { message: 'Incorrect email or password' } );
             }
             else {
-                return done( null, null, { message: 'Incorrect password' } );
+                /* Email exists and password matches */
+                return done(null, user);
             }
         } catch (err) {
             done(err)
