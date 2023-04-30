@@ -5,7 +5,7 @@ const router = express.Router();
 const { checkNotAuthenticated } = require('../server/passport-cfg');
 
 router.get('/', checkNotAuthenticated, (req, res) => {
-    res.render('login.ejs');
+    res.sendFile('/usr/app/views/login.html');
 });
 
 router.post('/', checkNotAuthenticated, passport.authenticate('local', {
