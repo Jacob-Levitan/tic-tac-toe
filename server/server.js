@@ -10,11 +10,10 @@ const { init_passport, checkAuthenticated } = require('./passport-cfg');
 const read_secret = require('./secret_reader');
 const session_secret = read_secret('session_secret');
 
-
 init_passport(passport);
 
-
-app.set('view-engine', 'ejs');
+app.set('view-engine', 'html');
+app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 app.use(flash());
 app.use(session({
