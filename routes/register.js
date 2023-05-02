@@ -9,9 +9,8 @@ const router = express.Router();
 const NUM_HASHES = 10;
 
 router.get('/', checkNotAuthenticated, (req, res) => {
-    res.sendFile('/usr/app/views/register.html');
+    res.render('register.ejs');
 });
-
 
 router.post('/', checkNotAuthenticated, async (req, res) => {
     try {
