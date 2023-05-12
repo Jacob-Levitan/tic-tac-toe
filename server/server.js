@@ -1,5 +1,5 @@
 const express = require('express');
-const app = express();
+const cors = require('cors');
 const loginRouter = require('../routes/login');
 const logoutRouter = require('../routes/logout');
 const registerRouter = require('../routes/register');
@@ -13,6 +13,16 @@ const session_secret = read_secret('session_secret');
 
 init_passport(passport);
 
+const app = express();
+app.set('view-engine', 'html');
+app.use(express.static('public'));
+app.use(express.json())
+app.use(
+    cors({
+        origin: 'http://localhost:5173',
+        credentials: true
+    })
+);
 
 app.set('view-engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
