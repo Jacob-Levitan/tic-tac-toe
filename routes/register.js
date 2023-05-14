@@ -8,10 +8,6 @@ const { mongo_connect, mongo_disconnect } = require('../db/connection');
 const router = express.Router();
 const NUM_HASHES = 10;
 
-router.get('/', checkNotAuthenticated, (req, res) => {
-    res.render('register.ejs');
-});
-
 router.post('/', checkNotAuthenticated, async (req, res) => {
     try {
         // await mongo_connect();
@@ -46,13 +42,13 @@ router.post('/', checkNotAuthenticated, async (req, res) => {
             console.log(err);
             res.status(400).json({ message: err.message });
         }
-        // Redirect to login after successful registration
-        res.status(201).redirect('/login');
-        await mongo_disconnect();
+        // Return successful registration
+        res.status(201).json({ message: "success" })
+        // await mongo_disconnect();
     } catch (err) {
         // Error from bcrypt or mongo_connect/disconnect
         console.log(err);
-        res.status(500).redirect('/register');
+        res.status(500)
     }
 
 });
