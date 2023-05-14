@@ -1,9 +1,9 @@
 const express = require('express');
 const { append } = require('express/lib/response');
 const bcrypt = require('bcrypt');
-const { checkNotAuthenticated } = require('../server/passport-cfg');
 const User = require('../models/user');
-const { mongo_connect, mongo_disconnect } = require('../db/connection');
+const { checkNotAuthenticated } = require('../server/jwt');
+// const { mongo_connect, mongo_disconnect } = require('../db/connection');
 
 const router = express.Router();
 const NUM_HASHES = 10;
