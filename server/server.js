@@ -3,13 +3,9 @@ const cors = require('cors');
 const loginRouter = require('../routes/login');
 const logoutRouter = require('../routes/logout');
 const registerRouter = require('../routes/register');
+const protectedRouter = require('../routes/protected')
 const passport = require('passport')
-const flash = require('express-flash');
-const session = require('express-session');
-const { init_passport, checkAuthenticated } = require('./passport-cfg');
-const read_secret = require('./secret_reader');
-const session_secret = read_secret('session_secret');
-
+const { init_passport } = require('./passport-cfg');
 
 init_passport(passport);
 
@@ -23,18 +19,12 @@ app.use(
 );
 
 app.use(express.urlencoded({ extended: false }));
-app.use(flash());
-app.use(session({
-    secret: session_secret,
-    resave: false,
-    saveUninitialized: false
-}));
 app.use(passport.initialize());
-app.use(passport.session());
 
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/logout', logoutRouter);
+app.use('/protected', protectedRouter);
 
 const port = process.env.PORT || 5001;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
