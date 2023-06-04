@@ -3,7 +3,8 @@ const cors = require('cors');
 const loginRouter = require('../routes/login');
 const logoutRouter = require('../routes/logout');
 const registerRouter = require('../routes/register');
-const protectedRouter = require('../routes/protected')
+const userRouter = require('../routes/user');
+const refreshTokenRouter = require('../routes/refresh-token');
 const passport = require('passport')
 const { init_passport } = require('./passport-cfg');
 
@@ -24,7 +25,8 @@ app.use(passport.initialize());
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/logout', logoutRouter);
-app.use('/protected', protectedRouter);
+app.use('/user', userRouter);
+app.use('/refresh-token', refreshTokenRouter);
 
 const port = process.env.PORT || 5001;
 app.listen(port, () => console.log(`Listening on port ${port}...`));

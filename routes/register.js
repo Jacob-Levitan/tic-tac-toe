@@ -2,16 +2,13 @@ const express = require('express');
 const { append } = require('express/lib/response');
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
-const { checkNotAuthenticated } = require('../server/jwt');
-// const { mongo_connect, mongo_disconnect } = require('../db/connection');
+const { generateAccessToken } = require('../server/jwt');
 
 const router = express.Router();
 const NUM_HASHES = 10;
 
-router.post('/', checkNotAuthenticated, async (req, res) => {
+router.post('/', async (req, res) => {
     try {
-        // await mongo_connect();
-
         const existingUsername = await User.getUserByUsername(req.body.username);
         if (existingUsername) {
             res.status(403).json({ message: "Username already exists!" });
@@ -42,11 +39,11 @@ router.post('/', checkNotAuthenticated, async (req, res) => {
             console.log(err);
             res.status(400).json({ message: err.message });
         }
-        // Return successful registration
+        // Return successful registration with accessToken
+        generateAccessToken(res, req.body.email)
         res.status(201).json({ message: "success" })
-        // await mongo_disconnect();
     } catch (err) {
-        // Error from bcrypt or mongo_connect/disconnect
+        // Error from bcrypt
         console.log(err);
         res.status(500)
     }

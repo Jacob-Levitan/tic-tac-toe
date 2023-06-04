@@ -48,10 +48,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.statics.getUserByEmail = async function getUserByEmail(attemptedEmail) {
     try {
-        // await mongo_connect();
         const user = await this.model('User').findOne({ email: attemptedEmail });
-        // await mongo_disconnect();
-
         return user;
     }
     catch (err) {
