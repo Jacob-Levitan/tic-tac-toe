@@ -5,17 +5,14 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const read_secret = require('../server/secret_reader');
 const JWT_SECRET = read_secret('jwt_secret');
-const { checkNotAuthenticated } = require('../server/jwt');
+const { generateAccessToken, generateRefreshToken } = require('../server/jwt');
 
-router.post('/', checkNotAuthenticated,
-    passport.authenticate('local', {
-    session: false,
-    // successRedirect: '/homepage',
-    failureRedirect: '/login'
-    }),
+router.post('/', passport.authenticate('local', { session: false, }),
     (req, res) => {
-        const accessToken = jwt.sign(req.body.email, JWT_SECRET);
-        res.json({ accessToken: accessToken});
+        const accessToken = generateAccessToken(req.body.email);
+        const refreshToken = generateRefreshToken(req.body.email);
+
+        res.json( { accessToken, refreshToken } ).status(200);
     });
 
 module.exports = router;
