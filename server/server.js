@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser')
 const loginRouter = require('../routes/login');
 const logoutRouter = require('../routes/logout');
 const registerRouter = require('../routes/register');
@@ -21,6 +22,7 @@ app.use(
 
 app.use(express.urlencoded({ extended: false }));
 app.use(passport.initialize());
+app.use(cookieParser());
 
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);

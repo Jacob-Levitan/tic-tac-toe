@@ -12,7 +12,8 @@ router.post('/', passport.authenticate('local', { session: false, }),
         const accessToken = generateAccessToken(req.body.email);
         const refreshToken = generateRefreshToken(req.body.email);
 
-        res.json( { accessToken, refreshToken } ).status(200);
+        res.cookie('jwt', refreshToken, { httpOnly: true, maxAge: 24*60*60*1000 });
+        res.json( { accessToken } ).status(200);
     });
 
 module.exports = router;
