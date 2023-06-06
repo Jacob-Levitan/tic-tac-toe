@@ -1,6 +1,6 @@
 services:
   tic-tac-toe:
-    image: "zcohn93/tic-tac-toe:0.7"
+    image: "zcohn93/tic-tac-toe:0.8"
     container_name: tic-tac-toe
     ports:
       - 4001:4001
@@ -12,14 +12,11 @@ services:
       - db_pw
       - jwt_secret
       - jwt_refresh_secret
-      - session_secret
     tty: true
     stdin_open: true
-    volumes:
-      - ./secrets/.netrc:/root/.netrc:ro
 
   tic-tac-toe-frontend:
-    image: "zcohn93/tic-tac-toe-frontend:0.2"
+    image: "zcohn93/tic-tac-toe-frontend:0.3"
     container_name: tic-tac-toe-frontend
     ports:
       - 5173:5173
@@ -27,8 +24,6 @@ services:
     stdin_open: true
 
 secrets:
-  github_token:
-    file: secrets/.netrc
   db_user:
     file: secrets/db_user
   db_pw:
@@ -37,5 +32,3 @@ secrets:
     file: secrets/jwt_secret
   jwt_refresh_secret:
     file: secrets/jwt_refresh_secret
-  session_secret:
-    file: secrets/session_secret
