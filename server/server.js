@@ -8,6 +8,7 @@ const userRouter = require('../routes/user');
 const refreshTokenRouter = require('../routes/refresh-token');
 const passport = require('passport')
 const { init_passport } = require('./passport-cfg');
+const { mongo_connect } = require('../db/mongo_connection');
 
 init_passport(passport);
 
@@ -48,6 +49,8 @@ app.use('/register', registerRouter);
 app.use('/logout', logoutRouter);
 app.use('/user', userRouter);
 app.use('/refresh-token', refreshTokenRouter);
+
+mongo_connect();
 
 const port = process.env.PORT || 5001;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
