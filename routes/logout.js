@@ -1,18 +1,14 @@
 const express = require('express');
 const router = express.Router();
-let refreshTokens = require('../db/refresh-tokens');
+const { redisClient } = require('../db/redis_connect');
 
 router.post('/',  (req, res) => {
     const refreshToken = req?.cookies?.jwt;
 
     /* Nothing to clear */
-    if (!refreshToken) return res.status(204);    //GETTING STUCK HERE!
+    if (!refreshToken) return res.status(204);
 
-    let tokenIndex = refreshTokens.indexOf(refreshToken);
-    /* If refreshToken found */
-    if (tokenIndex !== -1)
-        refreshTokens.splice(tokenIndex, 1);
-
+    redisClient.del(refreshToken);
     res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: false });
 
     res.sendStatus(204);
