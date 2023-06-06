@@ -12,12 +12,15 @@ const { init_passport } = require('./passport-cfg');
 init_passport(passport);
 
 const Redis = require('redis');
+const read_secret = require('./secret_reader');
+const REDIS_PW = read_secret('redis_pw');
 const redisClient = Redis.createClient({
     legacyMode: true,
     socket: {
         port: process.env.REDIS_PORT,
         host: process.env.REDIS_HOST
-    }
+    },
+    password: REDIS_PW
 });
 
 async function testConnect() {
