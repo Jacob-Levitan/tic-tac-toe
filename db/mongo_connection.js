@@ -8,9 +8,9 @@ const dbURI = `mongodb+srv://${DB_USER}:${DB_PW}@${DB_SERVER}?retryWrites=true&w
 async function mongo_connect() {
     try {
         await mongoose.connect(dbURI)
-        console.log('CONNECTION SUCCESSFUL')
+        console.log('MONGO CONNECTION SUCCESSFUL')
     } catch (err) {
-        console.log(`CONNECTION FAILED: ${err}`)
+        console.log(`MONGO CONNECTION FAILED: ${err}`)
         return err
     }
 }
