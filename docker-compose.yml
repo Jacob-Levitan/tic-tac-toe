@@ -1,17 +1,21 @@
 services:
   tic-tac-toe:
-    image: "zcohn93/tic-tac-toe:0.8"
+    image: "zcohn93/tic-tac-toe:0.9"
     container_name: tic-tac-toe
     ports:
       - 4001:4001
     environment:
       - PORT=4001
       - DB_URI=tic-tac-toe.blziyjp.mongodb.net/tic-tac-toe
+      - REDIS_HOST=redis-db
+      - REDIS_PORT=6379
     secrets:
       - db_user
       - db_pw
       - jwt_secret
       - jwt_refresh_secret
+    depends_on:
+      - redis-db
     tty: true
     stdin_open: true
 
@@ -26,8 +30,9 @@ services:
   redis-db:
     image: "redis:latest"
     container_name: "redis"
-    environment:
-      - ALLOW_EMPTY_PASSWORDS=yes
+    command: ["redis-server", "--save", "60", "1", "--loglevel", "warning"]
+    volumes:
+      - ~/redis/data:/data
     ports:
       - 6379:6379
 
