@@ -5,8 +5,6 @@ const DB_PW = read_secret('db_pw')
 const DB_SERVER = process.env.DB_URI
 const dbURI = `mongodb+srv://${DB_USER}:${DB_PW}@${DB_SERVER}?retryWrites=true&w=majority`
 
-mongo_connect();
-
 async function mongo_connect() {
     try {
         await mongoose.connect(dbURI)
