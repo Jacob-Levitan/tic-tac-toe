@@ -11,6 +11,22 @@ const { init_passport } = require('./passport-cfg');
 
 init_passport(passport);
 
+const Redis = require('redis');
+const redisClient = Redis.createClient({
+    legacyMode: true,
+    socket: {
+        port: process.env.REDIS_PORT,
+        host: process.env.REDIS_HOST
+    }
+});
+
+async function testConnect() {
+    await redisClient.connect();
+    await redisClient.set('name', 'zach');
+}
+
+testConnect();
+
 const app = express();
 app.use(express.json())
 app.use(
