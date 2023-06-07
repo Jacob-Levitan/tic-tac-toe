@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
             res.status(400).json({ message: err.message });
         }
         // Return successful registration with accessToken
-        generateAccessToken(res, req.body.email)
+        generateAccessToken(req.body.email)
         res.status(201).json({ message: "success" })
     } catch (err) {
         // Error from bcrypt
