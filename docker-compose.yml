@@ -24,7 +24,7 @@ services:
     image: "zcohn93/tic-tac-toe-frontend:0.3"
     container_name: tic-tac-toe-frontend
     ports:
-      - 80:5173
+      - 5173:5173
     tty: true
     stdin_open: true
 
