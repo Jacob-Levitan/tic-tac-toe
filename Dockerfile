@@ -12,10 +12,9 @@ WORKDIR ${WORKING_DIR}
 COPY package*.json ./
 
 RUN npm install
-RUN npm install -g nodemon
 
 COPY . .
 
 EXPOSE ${PORT}
 
-CMD ["nodemon", "server/server.js"]
+CMD ["node", "server/server.js"]

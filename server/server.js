@@ -18,7 +18,7 @@ init_passport(passport);
 const app = express();
 app.use(
     cors({
-        origin: 'http://localhost:5173',
+        origin: 'http://34.227.152.81:5173',
         credentials: true
     })
 );
