@@ -20,6 +20,12 @@ const userSchema = new mongoose.Schema({
         required: true
     },
 
+    roles: {
+        type: Array,
+        required: true,
+        default: ['user']
+    },
+
     userCreatedDate: {
         type: Date,
         required: true,
