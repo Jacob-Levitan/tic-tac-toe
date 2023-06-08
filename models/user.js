@@ -57,10 +57,7 @@ userSchema.statics.getUserByEmail = async function getUserByEmail(attemptedEmail
 
 userSchema.statics.getUserByUsername = async function getUserByUsername(attemptedUsername) {
     try {
-        // await mongo_connect();
         const user = await this.model('User').findOne({ username: attemptedUsername });
-        // await mongo_disconnect();
-
         return user;
     }
     catch (err) {
@@ -70,9 +67,7 @@ userSchema.statics.getUserByUsername = async function getUserByUsername(attempte
 
 userSchema.statics.getUserById = async function getUserById(id) {
     try {
-        // await mongo_connect();
         const user = await this.model('User').findOne({ _id: id });
-        // await mongo_disconnect();
         return user;
     } catch (err) {
         console.log(err);
