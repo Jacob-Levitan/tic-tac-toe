@@ -26,6 +26,7 @@ router.post('/', async (req, res) => {
             username: req.body.username,
             email: req.body.email,
             hashedPw: hashedPassword,
+            roles: ['user'],
             userCreatedDate: Date.now(),
             wins: 0,
             losses: 0
