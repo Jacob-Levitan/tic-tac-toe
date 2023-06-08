@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { redisClient } = require('../db/redis_connect');
+const { authenticateToken } = require('../server/jwt')
 
-router.post('/',  (req, res) => {
+router.post('/', authenticateToken, (req, res) => {
     const refreshToken = req?.cookies?.jwt;
 
     /* Nothing to clear */
