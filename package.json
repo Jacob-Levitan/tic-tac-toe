@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Jacob-Levitan/tic-tac-toe.git"
+    "url": "git+https://github.com/z-cohn/tic-tac-toe.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Jacob-Levitan/tic-tac-toe/issues"
+    "url": "https://github.com/z-cohn/tic-tac-toe/issues"
   },
-  "homepage": "https://github.com/Jacob-Levitan/tic-tac-toe#readme",
+  "homepage": "https://github.com/z-cohn/tic-tac-toe#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.6",
