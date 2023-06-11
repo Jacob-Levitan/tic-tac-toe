@@ -6,6 +6,7 @@ const logoutRouter = require('../routes/logout');
 const registerRouter = require('../routes/register');
 const userRouter = require('../routes/user');
 const refreshTokenRouter = require('../routes/refresh-token');
+const leaderboardRouter = require('../routes/leaderboard');
 const playRouter = require('../routes/play');
 const passport = require('passport');
 const { init_passport } = require('./passport-cfg');
@@ -33,6 +34,7 @@ app.use('/logout', logoutRouter);
 app.use('/user', userRouter);
 app.use('/refresh-token', refreshTokenRouter);
 app.use('/play', playRouter);
+app.use('/leaderboard', leaderboardRouter);
 
 connectRedis();
 mongo_connect();
